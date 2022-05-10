@@ -1,82 +1,82 @@
 # ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Project 1: Civic data analysis
 
-## Due May 10th @10am
+### Contents:
+- [Problem Statement](#Problem-Statement)
+- [Executive Summary](#Executive-Summary)
+- [Data Dictionary](#Data-Dictionary)
+- [Conclusions and Recommendations](#Conclusions-and-Recommendations)
 
-## Business Case
+### Problem Statement
 
-Your hometown mayor just created a new data analysis team to give policy advice, and the administration recruited _you_ via LinkedIn to join it. Unfortunately, due to budget constraints, for now the "team" is just you...
-
-The mayor wants to start a new initiative to move the needle on high school education outcomes.
-
-Also unfortunately, that is the entirety of what you've been told. And the mayor just went on a lobbyist-funded fact-finding trip in the Bahamas. In the meantime, you got your hands on a [few national datasets][data] on [SAT and ACT][background] scores. Start exploring these to look for useful patterns and [possible hypotheses][ps]!
-
----
-
-## Directions
-
-This project is focused on exploratory data analysis, aka "EDA". 
-
-EDA is an essential part of the data science analysis pipeline. Failure to perform EDA before modeling is almost guaranteed to lead to bad models and faulty conclusions. What you do in this project are good practices for all projects going forward, especially those after this bootcamp!
-
-Spend your time trying to understand your data, through both summary statistics and visualization. By the end, you will want to be familiar enough with the datasets that you can think of [testable hypotheses][ps] that could point in specific policy directions.
-
-We will be looking for the following things:
-
-- For statistics questions, Python code -- using pandas, numpy, scipy, and/or other libraries -- to calculate correct answers, with Markdown explaining your results
-- For plotting questions, labeled matplotlib plots displayed within your notebook, with Markdown interpreting the results
+The mayor wants to start a new initiative to move the needle on high school education outcomes. With the data on SAT and ACT standardized testing along with data on California Colleges, we will look at at how the two tests compare. We will determine which test is more popular, how average test scores vary between the two tests, and which test gives students a better chance of being accepted in colleges. 
 
 ---
 
-## Requirements
+### Executive Summary
 
-- Materials must be in a clearly commented Jupyter notebook
-  - Here, we provide you with [starter code](./code/starter-code.ipynb) in a Jupyter notebook that will help to guide your data exploration and analysis. **If you choose to edit the core structure of this notebook, make sure you don't exclude any of the requested operations**
+Initially we import data from ACT and SAT test scores for each state from 2017, 2018, 2019 along with data from california ACT/SAT testing and College ACT/SAT test scores. We then clean our data by dropping unnecessary columns and correcting data types and Null values in order to perform functions over them. Our data analysis looks into trends in SAT/ACT participation rates, average scores, and college admissions based on SAT/ACT test scores. Ultimately we reveal why the SAT is a better choice for students to focus on in order to improve their chances of being admitted into colleges of varying acception rates. 
+
+### Data Dictionary
+
+|Feature|Type|Dataset|Description|
+|---|---|---|---|
+|**state**|*object*|act_merged|US State| 
+|**part_*year***|*float*|act_merged|Percentange of ACT test takers in ***year*** (2017, 2018, 2019) i.e. **part_17, part_18, part_19**| 
+|**comp_*year***|*float*|act_merged|Avg ACT composite score in  in ***year*** (2017, 2018, 2019) i.e. **comp_17, comp_18, comp_19**| 
+|**state**|*object*|sat_merged|US State|
+|**part_*year***|*float*|sat_merged|Percentange of SAT test takers in ***year*** (2017, 2018, 2019) i.e. **part_17, part_18, part_19**|
+|**EBRW_*year***|*float*|sat_merged|Avg SAT Evidence-Based Reading and writing score in ***year*** (2017, 2018, 2019) i.e. **EBRW_17, EBRW_18, EBRW_19**|
+|**math_*year***|*float*|sat_merged|Avg SAT Math score in ***year*** (2017, 2018, 2019) i.e. **math_17, math_18, math_19**|
+|**total_*year***|*float*|sat_merged|Avg SAT Total score in ***year*** (2017, 2018, 2019) i.e. **total_17, total_18, total_19**|
+|**CDS**|*float*|sat_act_19_ca|Unique identifier for school|
+|**record_type**|*object*|sat_act_19_ca|Record type: County, District, School (C, D, S)|
+|**school**|*object*|sat_act_19_ca|School Name|
+|**disctrict**|*object*|sat_act_19_ca|District of School|
+|**city**|*object*|sat_act_19_ca|City Name|
+|**enroll_12**|*float*|sat_act_19_ca|Number of Seniors enrolled|
+|**sat_part**|*float*|sat_act_19_ca|Number of students who took SAT test|
+|**sat_rate_pass**|*float*|sat_act_19_ca|Rate of students that passed SAT|
+|**act_part**|*float*|sat_act_19_ca|Number of students who took the SAT|
+|**act_rate_over_20**|*float*|sat_act_19_ca|Rate of students who passed ACT|
+|**act_avg_read**|*float*|sat_act_19_ca|Average score for Read section of ACT|
+|**act_avg_eng**|*float*|sat_act_19_ca|Average score for English section of ACT|
+|**act_avg_math**|*float*|sat_act_19_ca|Average score for Math section of ACT|
+|**act_avg_sci**|*float*|sat_act_19_ca|Average score for Science section of ACT. This section was excluded when comparing SAT to ACT Math sections |
+|**act_avg_score**|*float*|sat_act_19_ca|Average Composite score for ACT|
+|**school**|*object*|sat_act_19_ca|School Name|
+|**optional**|*object*|sat_act_19_ca|Test Optional|
+|**year_apply**|*object*|sat_act_19_ca|Year the policy applies to|
+|**policy**|*object*|sat_act_19_ca|Test policy|
+|**num_applicants**|*int*|sat_act_19_ca|Number of applicants to school|
+|**accept_rate**|*object*|sat_act_19_ca|Rate of acceptance|
+|**sat_q1**|*float*|sat_act_19_ca|25% Pecentile of SAT scores|
+|**sat_q3**|*float*|sat_act_19_ca|75% Percentile of SAT scores|
+|**act_q1**|*float*|sat_act_19_ca|25% Percentile of ACT scores|
+|**act_q3**|*float*|sat_act_19_ca|75% Percentile of ACT scores|
+|**test_blind**|*float*|sat_act_19_ca|Schools that do not look at standardized test scores|
+|**accept_tiers**|*float*|sat_act_19_ca|Acceptance rates grouped in range 5%, 10%, 15%, 25%, 50%, 75%, 100%|
+|**sat_q1_perc**|*float*|sat_act_19_ca|SAT score percentage for 25% Percentile scores|
+|**act_q1_perc**|*float*|sat_act_19_ca|ACT scores percentage for 75% Percentile scores|
+|**sat_q2**|*float*|sat_act_19_ca|Presumed median SAT score. Median cannot be correctly calculated from interquartile range|
+|**act_q2**|*float*|sat_act_19_ca|Presumed median ACT score. Median cannot be correctly calculated from interquartile range|
+|**accept_tiers**|*float*|coll_tiers_nat_avg|Acceptance rates grouped in range 5%, 10%, 15%, 25%, 50%, 75%, 100%|
+|**act_q1_diff**|*float*|coll_tiers_nat_avg|Difference of 25% Perntile ACT score percentage from National Average|
+|**sat_q1_diff**|*float*|coll_tiers_nat_avg|Difference of 25% Perntile SAT score percentage from National Average|
+|**act_q1**|*float*|coll_tiers_nat_avg|Colleges' 25% Percentile ACT Score|
+|**sat_q1**|*float*|coll_tiers_nat_avg|Colleges' 75% Percentile ACT Score|
+
+### Conclusions and Recommendations
+
+Based on the data on states' participation rates and average scores for the ACT and SAT standardized tests we are able to clearly see that there is a trend of SAT gaining popularity over the ACT. Average test scores overall are higher for the SAT than the ACT. 
+
+The data on college test scores leads to the conclusion that the lower 25% of acceptable SAT test scores are closer to the SAT national average than the ACT lower 25% scores are to the ACT national average. This suggests that it is advantageous for students to take the SAT over the ACT. 
+
+We categorized colleges based on their acceptance rates and provided the lower 25% SAT and ACT scores for each category. This information is meant to be used as target points for students. If a student wishes to get into a college with a lower acceptance rate and higher acceptable test score, they can use this information to understand by how much they need to improve their scores. 
+
+We recommend providing students with resources for practice testing in order to gauge their standing in relation to this scale of college admission test scores. The SAT has the added benefit of allowing Junior students to take the test. Students should be advised to take the SAT in their junior year to introduce them to the standardized test as early as possible. 
+
+Requiring students to take the either standardized test results in an overall lower average score. This correlation is due to a larger sample size and presumably less willingness to participate in standardized testing. Further study would be required to analyze how these states requiring students participate in order to reach any conclusions on the those students performance and how to improve their results. 
+
+---
   - More on the *structure of your submission repo* [here][deliverables]
 - Students should demonstrate the ability to:
-
-    - Analyze diverse datasets & explicitly state your assumptions
-    - Form hypotheses and justify them with solid statistical testing in NumPy
-    - Visualize and interpret your plots using Matplotlib and Seaborn
-
-- You will also [present your findings][presentation] on May 10th
-    - Assume you are presenting to the mayor (i.e., a non-technical audience)
-    - You have up to **4 minutes** (absolutely no longer!)
-    - You can choose to present on either or both tests
-    - Your slides must be in google slides (absolutely no exceptions)
-      - Download as .pdf to upload your slides to your repository
-
-*TIP*: 4 minutes is not long.  Think about what is most important to talk about.  
-
----
-
-### Useful Resources
-
-- [Pandas cheatsheet: descriptive statistics](https://chrisalbon.com/code/python/data_wrangling/pandas_dataframe_descriptive_stats/)
-- [Matplotlib examples gallery](https://matplotlib.org/stable/gallery/index.html)
-- [Seaborn examples gallery](http://seaborn.pydata.org/examples/)
-
----
-
-### Project Feedback + Evaluation
-
-For all projects, students will be evaluated on a simple 4 point scale (0, 1, 2, or 3). Instructors will use this [rubric][rubric] when scoring student performance on each of the [core project **requirements**][rubric]:
-
- Score | Expectations
- ----- | ------------
- **0** | _Does not meet expectations. Try again._
- **1** | _Approaching expectations. Getting there..._
- **2** | _Meets expectations. Great job._
- **3** | _Exceeds expectations. Portfolio-ready!_
-
----
-
-### REMEMBER:
-
-This is a learning environment and you are encouraged to try new things, even if they don't work out as well as you planned! While this rubric outlines what we look for in a _good_ project, it is up to you to go above and beyond to create a _great_ project. **Learn from your failures and you'll be prepared to succeed in the workforce**.
-
-[data]: https://git.generalassemb.ly/DSIR-425/project_1/wiki/Data
-[deliverables]: https://git.generalassemb.ly/DSIR-425/project_1/wiki/Deliverables
-[rubric]: https://git.generalassemb.ly/DSIR-425/project_1/wiki/Rubric
-[presentation]: https://git.generalassemb.ly/DSIR-425/project_1/wiki/Presentation
-[ps]: https://git.generalassemb.ly/DSIR-425/project_1/wiki/Problem-Statement
-[background]: https://git.generalassemb.ly/DSIR-425/project_1/wiki/SAT-ACT-background
