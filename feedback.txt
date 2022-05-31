@@ -1,0 +1,20 @@
+project organization 1
+Good work on including markdown to explain your code in your data cleaning section. In the future try to include an explanation of why you are writing a particular piece of code rather than simply what that code is. Also make sure to remove any unnecessary files as well as organize and name the important files in a logical and helpful way. For instance you left the starter code notebook untouched in the code folder while naming your important notebook "REALREAL" and leaving it in the root directory.
+
+clarity of message 2
+Your problem statement and conclusions are clearly stated and your readme has a clear message. Where you can improve in this area is in your Python notebook. You did not include any markdown interpreting the steps you took in your EDA section and it was unclear how any of them related back to your problem statement or supported your conclusions.
+
+python syntax 3
+Great work here. Your code displays a high level of technical proficiency with python syntax and functions. Your code is syntactically correct and appears to generate the desired results. No comments here.
+
+data cleaning and eda 1
+Your data cleaning section is excellent. You appear to have fixed all of the data formatting issues and you merge your datasets appropriately. Where you have a lot of room for improvement is in your EDA section. You did not include any markdown explaining what you were doing or what the takeaway was for your reader. This made your logic and steps confusing to follow. It was often unclear why you were doing things (such as your usage of .concat()) or how they related back to your problem statement/overall project.
+
+visualizations 2
+Good work here. The biggest area for improvement is including interpretations of each of your visualizations for your reader. What should they be taking away from each of them? How do they support your conclusions? Another minor note is when displaying correlation heatmaps make sure you bind your color scale to a min/max of -1 to 1.
+
+research and conceptual understanding 1
+Try to include more interpretation with regards to descriptive and inferential statistics.
+
+presentation 2
+Your presentation was good. It was an appropriate level for a non-technical audience and was concise. There were a few things you could improve upon. 1. Use consistent coloring between graphs to help get your point across quickly. 2. Include a problem statement slide in your intro to help frame your presentation as well as a conclusions slide to help bring it home.
